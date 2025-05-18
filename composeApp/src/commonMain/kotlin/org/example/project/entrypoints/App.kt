@@ -10,13 +10,15 @@ import androidx.navigation.navigation
 import org.example.project.di.appModule
 import org.example.project.di.coreModule
 import org.example.project.di.homeModule
-import org.example.project.routes.AppRoute.*
-import org.example.project.routes.HomeRoute.UserSettings
+import org.example.project.navigation.RegisterNavigationControllerObserver
+import org.example.project.navigation.routes.AppRoute.*
+import org.example.project.navigation.routes.HomeRoute.UserSettings
 import org.example.project.screens.InitScreen
 import org.example.project.screens.LoginScreen
 import org.example.project.viewModels.InitViewModel
 import org.example.project.viewModels.LoginViewModel
 import org.koin.compose.KoinApplication
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -31,6 +33,11 @@ fun App(navHostController: NavHostController = rememberNavController()) {
                 )
             }
         ) {
+            RegisterNavigationControllerObserver(
+                navigationController = koinInject(),
+                navHostController = navHostController
+            )
+
             NavHost(
                 navController = navHostController,
                 startDestination = Init,
@@ -46,7 +53,7 @@ fun App(navHostController: NavHostController = rememberNavController()) {
                 }
 
                 navigation<Home>(startDestination = UserSettings) {
-                    home(navHostController)
+                    home()
                 }
             }
         }
