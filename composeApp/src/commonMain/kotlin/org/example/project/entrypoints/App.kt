@@ -49,7 +49,11 @@ fun App(navHostController: NavHostController = rememberNavController()) {
 
                 composable<Login> {
                     val loginViewModel: LoginViewModel = koinViewModel()
-                    LoginScreen()
+                    LoginScreen(
+                        onLogin = { username: String, password: String ->
+                            loginViewModel.login(username, password)
+                        }
+                    )
                 }
 
                 navigation<Home>(startDestination = UserSettings) {

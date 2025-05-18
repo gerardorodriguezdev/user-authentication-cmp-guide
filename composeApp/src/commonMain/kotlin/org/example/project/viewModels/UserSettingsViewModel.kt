@@ -1,8 +1,47 @@
 package org.example.project.viewModels
 
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.example.project.data.AuthDataSource
+import org.example.project.navigation.NavigationController
+import org.example.project.navigation.NavigationController.NavigationEvent
+import org.example.project.navigation.popUpToInclusive
+import org.example.project.navigation.routes.AppRoute.Home
+import org.example.project.navigation.routes.AppRoute.Login
+import org.example.project.platform.DispatchersProvider
 
 class UserSettingsViewModel(
     private val authDataSource: AuthDataSource,
-) : ViewModel()
+    dispatchersProvider: DispatchersProvider,
+    private val navigationController: NavigationController,
+) : ViewModel() {
+    private var logoutJob: Job? = null
+    private val ioScope = CoroutineScope(dispatchersProvider.io())
+
+    fun logout() {
+        logoutJob = ioScope.launch {
+            val logoutResult = authDataSource.logout()
+            if (logoutResult) {
+                navigationController.logout()
+            }
+        }
+    }
+
+    private suspend fun NavigationController.logout() {
+        sendNavigationEvent(
+            NavigationEvent.Navigate(
+                destinationRoute = Login,
+                launchSingleTop = true,
+                popUpTo = popUpToInclusive(startRoute = Home)
+            )
+        )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
+        logoutJob?.cancel()
+    }
+}
