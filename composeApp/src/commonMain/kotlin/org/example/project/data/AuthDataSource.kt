@@ -37,7 +37,7 @@ class FakeAuthDataSource : AuthDataSource {
     }
 
     private companion object {
-        const val VALID_USERNAME = "MyUsername"
-        const val VALID_PASSWORD = "MyPassword"
+        const val VALID_USERNAME = "Username"
+        const val VALID_PASSWORD = "Password"
     }
 }
