@@ -8,23 +8,33 @@ interface AuthDataSource {
     suspend fun logout(): Boolean
 }
 
-class FakeAuthDataSource(
-    var isUserLoggedInResult: Boolean = false,
-    var loginResult: Boolean = false,
-    var logoutResult: Boolean = false,
-) : AuthDataSource {
+class FakeAuthDataSource : AuthDataSource {
+    private var isUserLoggedIn = false
+
     override suspend fun isUserLoggedIn(): Boolean {
         delay(1_000)
-        return isUserLoggedInResult
+        return isUserLoggedIn
     }
 
     override suspend fun login(username: String, password: String): Boolean {
         delay(1_000)
-        return loginResult
+        val isLoginValid = username == VALID_USERNAME && password == VALID_PASSWORD
+
+        if (isLoginValid) {
+            isUserLoggedIn = true
+        }
+
+        return isLoginValid
     }
 
     override suspend fun logout(): Boolean {
         delay(1_000)
-        return logoutResult
+        isUserLoggedIn = false
+        return true
+    }
+
+    private companion object {
+        const val VALID_USERNAME = "MyUsername"
+        const val VALID_PASSWORD = "MyPassword"
     }
 }
