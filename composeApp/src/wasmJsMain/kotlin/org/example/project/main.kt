@@ -1,13 +1,24 @@
 package org.example.project
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
+import androidx.navigation.ExperimentalBrowserHistoryApi
+import androidx.navigation.bindToNavigation
+import androidx.navigation.compose.rememberNavController
 import kotlinx.browser.document
+import kotlinx.browser.window
 import org.example.project.entrypoints.App
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalBrowserHistoryApi::class)
 fun main() {
     ComposeViewport(document.body!!) {
+        val navHostController = rememberNavController()
+
         App()
+
+        LaunchedEffect(Unit) {
+            window.bindToNavigation(navHostController)
+        }
     }
 }
