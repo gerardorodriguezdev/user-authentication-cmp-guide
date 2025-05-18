@@ -9,6 +9,9 @@ import org.example.project.navigation.NavigationController.NavigationEvent
 import org.example.project.navigation.NavigationController.NavigationEvent.Navigate
 import org.example.project.navigation.NavigationController.NavigationEvent.PopBackStack
 
+/**
+ * Observer that converts NavigationEvents from the [NavigationController] into actual navigation using the NavHost
+ */
 interface NavigationControllerObserver {
     val navigationController: NavigationController
     val navHostController: NavHostController

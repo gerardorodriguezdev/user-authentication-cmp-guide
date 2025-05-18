@@ -18,6 +18,7 @@ fun main() {
         App()
 
         LaunchedEffect(Unit) {
+            // This allows us to update the url shown in the user's browser
             window.bindToNavigation(navHostController)
         }
     }

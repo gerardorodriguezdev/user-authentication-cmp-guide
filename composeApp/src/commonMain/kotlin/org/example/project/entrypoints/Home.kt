@@ -9,7 +9,9 @@ import org.koin.compose.viewmodel.koinViewModel
 
 fun NavGraphBuilder.home() {
     composable<UserSettings> {
-        val userSettingsViewModel: UserSettingsViewModel = koinViewModel()
-        UserSettingsScreen()
+        val userSettingsViewModel = koinViewModel<UserSettingsViewModel>()
+        UserSettingsScreen(
+            onLogout = { userSettingsViewModel.logout() },
+        )
     }
 }

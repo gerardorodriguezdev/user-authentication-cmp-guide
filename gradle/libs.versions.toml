@@ -7,6 +7,8 @@ androidx-activity = "1.10.1"
 androidx-lifecycle = "2.8.4"
 composeMultiplatform = "1.8.0"
 kotlin = "2.1.21"
+
+# Added versions
 kmp-navigation = "2.9.0-beta01"
 kmp-koin = "4.0.4"
 kmp-coroutines = "1.10.2"
@@ -15,6 +17,8 @@ kmp-coroutines = "1.10.2"
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+
+# Added libraries
 kmp-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "kmp-navigation" }
 kmp-koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "kmp-koin" }
 kmp-koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "kmp-koin" }
@@ -28,4 +32,6 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
+# Added plugins
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}

@@ -20,6 +20,7 @@ class InitViewModel(
     private var isUserLoggedInJob: Job? = null
     private val ioScope = CoroutineScope(dispatchersProvider.io())
 
+    // When the ViewModel is created, a request to server is done to see if the user is logged or not
     init {
         isUserLoggedInJob = ioScope.launch {
             val isUserLoggedIn = authDataSource.isUserLoggedIn()

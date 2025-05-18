@@ -5,8 +5,10 @@ import kotlinx.coroutines.flow.SharedFlow
 import org.example.project.navigation.NavigationController.NavigationEvent
 import org.example.project.navigation.routes.base.Route
 
+/**
+ * Proxy to send and receive navigation events from the navController inside ViewModels
+ */
 interface NavigationController {
-
     val navigationEvents: SharedFlow<NavigationEvent>
 
     suspend fun sendNavigationEvent(navigationEvent: NavigationEvent)

@@ -8,6 +8,6 @@ import org.example.project.navigation.routes.base.Route
 sealed interface HomeRoute : Route {
 
     @Serializable
-    @SerialName("home--user-settings")
+    @SerialName("home--user-settings") // The double -- is to differentiate from the base and the nested roots
     data object UserSettings : HomeRoute
 }

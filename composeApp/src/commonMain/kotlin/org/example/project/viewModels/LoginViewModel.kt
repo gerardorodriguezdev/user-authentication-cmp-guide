@@ -25,6 +25,8 @@ class LoginViewModel(
             val loginResult = authDataSource.login(username = username, password = password)
             if (loginResult) {
                 navigationController.login()
+            } else {
+                // For simplicity, we are not notifying the user if there was an error with the login
             }
         }
     }

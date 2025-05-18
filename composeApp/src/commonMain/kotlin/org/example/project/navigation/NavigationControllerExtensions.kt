@@ -16,6 +16,9 @@ fun popUpToInclusive(
         saveState = saveState,
     )
 
+/**
+ * Convenience composable that connects the NavHost and the [NavigationController] by a [NavigationControllerObserver]
+ */
 @Composable
 fun RegisterNavigationControllerObserver(
     navigationController: NavigationController,

@@ -25,6 +25,10 @@ class UserSettingsViewModel(
             val logoutResult = authDataSource.logout()
             if (logoutResult) {
                 navigationController.logout()
+            } else {
+                // For simplicity, we are not notifying the user if there was an error with the logout and still
+                // navigate to the Login screen
+                navigationController.logout()
             }
         }
     }
