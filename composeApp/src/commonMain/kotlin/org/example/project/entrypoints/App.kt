@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import org.example.project.di.appModule
+import org.example.project.di.coreModule
 import org.example.project.di.homeModule
 import org.example.project.routes.AppRoute.*
 import org.example.project.routes.HomeRoute.UserSettings
@@ -24,6 +25,7 @@ fun App(navHostController: NavHostController = rememberNavController()) {
         KoinApplication(
             application = {
                 modules(
+                    coreModule,
                     appModule,
                     homeModule,
                 )
