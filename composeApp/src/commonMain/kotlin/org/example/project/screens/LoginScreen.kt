@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,6 +13,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -27,10 +30,20 @@ fun LoginScreen(
             .background(color = MaterialTheme.colorScheme.background),
     ) {
         var username by remember { mutableStateOf("") }
-        TextField(value = username, onValueChange = { username = it })
+        TextField(
+            value = username,
+            onValueChange = { username = it },
+            placeholder = { Text("Username") },
+        )
 
         var password by remember { mutableStateOf("") }
-        TextField(value = password, onValueChange = { password = it })
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            placeholder = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        )
 
         Button(onClick = { onLogin(username, password) }) {
             Text("Login")

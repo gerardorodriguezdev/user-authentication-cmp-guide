@@ -33,6 +33,7 @@ fun App(navHostController: NavHostController = rememberNavController()) {
                 )
             }
         ) {
+            // With this function, we start receiving navigation events so the ViewModels can execute a navigation
             RegisterNavigationControllerObserver(
                 navigationController = koinInject(),
                 navHostController = navHostController
@@ -43,6 +44,7 @@ fun App(navHostController: NavHostController = rememberNavController()) {
                 startDestination = Init,
             ) {
                 composable<Init> {
+                    // This is required so the ViewModel makes the first request to server
                     val initViewModel = koinViewModel<InitViewModel>()
                     InitScreen()
                 }
@@ -56,6 +58,7 @@ fun App(navHostController: NavHostController = rememberNavController()) {
                     )
                 }
 
+                // Nested navigation graph
                 navigation<Home>(startDestination = UserSettings) {
                     home()
                 }

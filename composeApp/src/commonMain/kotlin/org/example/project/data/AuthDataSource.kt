@@ -8,6 +8,9 @@ interface AuthDataSource {
     suspend fun logout(): Boolean
 }
 
+/**
+ * For simplicity, this implementation simulates a remote server to handle the auth we will be needing
+ */
 class FakeAuthDataSource : AuthDataSource {
     private var isUserLoggedIn = false
 
